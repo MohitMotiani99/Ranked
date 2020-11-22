@@ -2,27 +2,16 @@
 using namespace std;
 int main(){
     int t;
-    long long n;
     cin>>t;
+    long long n;
     while(t--){
         cin>>n;
-        long long ns=sqrt(n);
-        int f=1;
-        long i=ns;
-        while(f){
-            if(n%i==0)
-            f=0;
-            else
-            i++;
+        long long mins=n+1;
+        for(int i=1;i<=sqrt(n);i++){
+            if(n%i==0 && n/i!=i){
+                mins=min(mins,i+n/i);
+            }
         }
-        int f2=1;
-        long j=ns;
-        while(f2){
-            if(n%j==0)
-            f2=0;
-            else
-            j--;
-        }
-        cout<<min(i+n/i,j+n/j)<<endl;
+        cout<<mins<<endl;
     }
 }
