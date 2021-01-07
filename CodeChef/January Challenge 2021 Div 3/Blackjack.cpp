@@ -17,7 +17,15 @@ int helper(int arr[],int n,int swaps,int x,int y,int ind,long sum){
         
         //int f=1;
         for(int i=ind;i<n;i++){
-            if(!(sum+arr[i]>y))
+            //cout<<i<<endl;
+            if(sum+arr[i]>=x && sum+arr[i]<=y)
+            {
+                if(res==INT_MAX)
+                return 0;
+                else
+                return res;
+            }
+            else if(sum+arr[i]>y)
             {
                 //f=0;
                 swap(arr[ind],arr[i]);
@@ -27,6 +35,8 @@ int helper(int arr[],int n,int swaps,int x,int y,int ind,long sum){
                 cout<<"Ans: "<<ans<<"  ";
                 res=min(res,ans);
             }
+            else if(sum+arr[i]<x)
+            sum+=arr[i];
         }
         cout<<"H3"<<" "<<res<<endl;
         return res;
@@ -46,6 +56,10 @@ int main(){
         
         int swaps=0;
         long sum=0;
-        cout<<helper(arr,n,swaps,x,y,0,sum)<<endl;
+        int a=helper(arr,n,swaps,x,y,0,sum);
+        if(a==INT_MAX)
+        cout<<"-1"<<endl;
+        else
+        cout<<a-1<<endl;
     }
 }
