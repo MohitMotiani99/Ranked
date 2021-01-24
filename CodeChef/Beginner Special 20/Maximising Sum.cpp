@@ -16,7 +16,7 @@ long maxval(int i,int k_left,int flg){
         if(dp[i][k_left][flg]!=-1e10)
         return dp[i][k_left][flg];
         else if(flg==0){
-            long c;
+            long c=-1e10;
             long a=maxval(i+1,k_left,flg);
             long b=maxval(i+1,k_left,1)+arr[i];
             if(k_left>0) c=maxval(i+1,k_left-1,1)-arr[i];
@@ -24,10 +24,9 @@ long maxval(int i,int k_left,int flg){
         }
         else{
             //long a=maxval(i+1,k_left,0);
-            long c;
-            long a=0;
-            long b=maxval(i+1,k_left,1)+arr[i];
-            if(k_left>0) c=maxval(i+1,k_left-1,1)-arr[i];
+            long c=0,a,b=-1e10;
+            a=maxval(i+1,k_left,1)+arr[i];
+            if(k_left>0) b=maxval(i+1,k_left-1,1)-arr[i];
             return dp[i][k_left][flg]=max(a,max(b,c));
         }
     
